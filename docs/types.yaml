@@ -1,0 +1,141 @@
+components:
+  securitySchemes:
+    bearerAuth:
+      type: 'http'
+      scheme: 'bearer'
+      bearerFormat: 'JWT'
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: number
+        type:
+          type: string
+        message:
+          type: string
+    UserResponse:
+      properties:
+        id:
+          type: string
+          example: '61eb3961-8a49-4e7a-90e2-f7eeaf1f7204'
+        name:
+          type: string
+          example: 'John Doe'
+        email:
+          type: string
+          example: 'john@doe.com'
+    AuthenticatedResponse:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        token:
+          type: string
+        refreshToken:
+          type: string
+    Flight:
+      properties:
+        id:
+          type: string
+          example: '61eb3961-8a49-4e7a-90e2-f7eeaf1f7204'
+        code:
+          type: string
+          example: AbcDef
+        capacity:
+          type: number
+          example: 200
+        departureDate:
+          type: string
+          example: '2020-10-23'
+        status:
+          type: string
+          enum: [none, processing, ready]
+          example: processing
+        img:
+          type: string
+    FlightData:
+      properties:
+        code:
+          type: string
+          example: AbcDef
+        capacity:
+          type: number
+          example: 50
+          minimum: 1
+          maximum: 200
+        departureDate:
+          type: string
+          example: '2020-10-23'
+    MultipartFlightData:
+      properties:
+        code:
+          type: string
+        capacity:
+          type: string
+        departureDate:
+          type: string
+        photo:
+          type: string
+          format: binary
+    FlightStatusResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          status:
+            type: string
+            enum: [none, processing, ready]
+          img:
+            type: string
+    FlightResponse:
+      type: object
+      properties:
+        total:
+          type: number
+          description: The total number of flights in the database
+        count:
+          type: number
+          description: The total number of flights that matched your filter
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/Flight'
+    AvailableResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [available, unavailable]
+          example: available
+    RefreshTokenResponse:
+      type: object
+      properties:
+        token:
+          type: string
+        refreshToken:
+          type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Request contains errors and cannot be processed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
