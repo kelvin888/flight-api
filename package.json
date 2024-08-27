@@ -1,5 +1,5 @@
 {
-  "name": "@musalasoft/flights-server",
+  "name": "flights-server",
   "version": "1.0.12",
   "private": false,
   "scripts": {
@@ -11,7 +11,6 @@
     "docs": "node ./docs/generate-swagger.js"
   },
   "bin": {
-    "@musalasoft/flights-server": "index.js",
     "flights-server": "index.js"
   },
   "main": "index.js",

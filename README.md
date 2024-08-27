@@ -48,7 +48,7 @@ npm run test
 
 The library is available under the company repository in npm
 
-https://www.npmjs.com/package/@musalasoft/flights-server
+https://www.npmjs.com/package/flights-server
 
 To create a new version increase the version number in package.json or run the `npm version` command with the desired configuration and run `npm publish`. You must log in the
 console with your credentials and have write access to the npm repo.
