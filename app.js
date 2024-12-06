@@ -19,7 +19,7 @@ export function createApp(container, { useGraphql = true, useDocs = true } = {})
 
   app.use(logger);
   app.use(cors({
-    origin: 'https://flight-management-app-xj74.vercel.app',
+    origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   }));
